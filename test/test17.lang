@@ -1,0 +1,21 @@
+{
+    int aa;
+    int bb;
+    aa = 1;
+    bb = 2;
+    if (aa)
+    {
+        int aa;
+        aa = 5;
+        while (aa - 8)
+        {
+            print(bb);
+            bb = bb - 1;
+            aa = aa + 1;
+        }
+    }
+
+    print(aa);
+    print(bb);
+}
+

@@ -18,5 +18,8 @@ class cStmtNode : public cAstNode
   public:
     cStmtNode() : cAstNode()
     {}
+    
+/*    virtual void GenerateCode()
+    {}*/
 };
 

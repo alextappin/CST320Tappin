@@ -1,0 +1,28 @@
+{
+    int factorial(int value)
+    {
+        int result;
+        result = 1;
+        if (value) 
+        {
+            int temp;
+            temp = factorial(value - 1);
+            result = value * temp;
+        }
+        return result;
+    }
+
+    int aa;
+    int bb;
+    int temp;
+
+    aa = 3;
+    bb = 4;
+
+    temp = factorial(aa);
+    print(temp);
+    temp = factorial(bb);
+    print(temp);
+    print(aa);
+    print(bb);
+}

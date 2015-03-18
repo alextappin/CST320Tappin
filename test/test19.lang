@@ -1,0 +1,36 @@
+{
+    int aa;
+    float bb;
+
+    float f1(int aa)
+    {
+        return aa*2.0;
+    }
+
+    int f2(int aa)
+    {
+        int bb;
+        bb = aa*3;
+        return bb;
+    }
+
+    float f3(float aa)
+    {
+        float x;
+        x = aa*2;
+        return x;
+    }
+
+    aa = 3;
+    bb = 5.0;
+
+    bb = f1(2);
+    print(bb);
+
+    aa = f2(aa);
+    print(aa);
+
+    bb = f3(bb);
+    print(bb);
+}
+

@@ -1,0 +1,10 @@
+{
+    float aa;
+    float bb;
+
+    aa = 5.2;
+    bb = aa*2+1.1;
+    print(aa - 3);
+    print(bb);
+    print(aa/2);
+}

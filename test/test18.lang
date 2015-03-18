@@ -1,0 +1,11 @@
+{
+    int foo()
+    {
+        print(5);
+        return 5;
+    }
+
+    foo();
+    print(10);
+}
+

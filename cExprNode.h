@@ -18,8 +18,11 @@ class cExprNode : public cAstNode
   public:
     cExprNode() : cAstNode()
     {}
-
+    
     // return the type of the expression
     virtual cDeclNode *GetType() =  0;
+    
+    virtual void GenerateCode() 
+    {}
 };
 

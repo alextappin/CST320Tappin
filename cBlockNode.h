@@ -48,6 +48,14 @@ class cBlockNode : public cStmtNode
         mSize = offset - base;
         return base;
   }
+  
+  void GenerateCode()
+    {
+        if(mStmts != nullptr)
+        {
+            mStmts->GenerateCode();
+        }
+    }
   protected:
     cDeclsNode *mDecls;     // declarations
     cStmtsNode *mStmts;     // statements

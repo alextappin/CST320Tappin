@@ -1,0 +1,11 @@
+{
+    int aa;
+    int bb;
+
+    aa = 5;
+    bb = aa*2+1;
+    print(aa - 3);
+    print(aa%2);
+    print(bb);
+    print(bb/3);
+}

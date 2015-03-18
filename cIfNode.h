@@ -24,7 +24,15 @@ class cIfNode : public cStmtNode
         mStmt = ifPart;
         mElse = elsePart;
     }
-
+    
+    int Computeoffsets(int base)
+    {
+        mExpr->Computeoffsets(base);
+        mStmt->Computeoffsets(base);
+        
+        return base;
+    }
+    
     virtual std::string toString()
     {
         std::string result("(IF: ");
@@ -35,6 +43,21 @@ class cIfNode : public cStmtNode
         return result;
     }
 
+    void GenerateCode()
+    {
+        EmitString("if (");
+        mExpr->GenerateCode();
+        EmitString(")\n{\n");
+        mStmt->GenerateCode();
+        EmitString("}\n");
+        
+        if (mElse != nullptr)
+        {
+          EmitString("else\n{\n");
+          mElse->GenerateCode();
+          EmitString("}\n");
+        }
+    }
   protected:
     cExprNode *mExpr;       // conditional expression
     cStmtNode *mStmt;       // statements for if cond is true

@@ -19,7 +19,8 @@ class cBinaryExprNode : public cExprNode
     cBinaryExprNode(cExprNode *left, char op, cExprNode *right) : cExprNode()
     {
         mLeftExpr = left;
-        mOperator = op;
+        mOperator[0] = op;
+        mOperator[1] = '\0';
         mRightExpr = right;
     }
 
@@ -54,9 +55,17 @@ class cBinaryExprNode : public cExprNode
         
         return base;
     }
+    
+    void GenerateCode()
+    {
+        mLeftExpr->GenerateCode();
+        EmitString(mOperator);
+        mRightExpr->GenerateCode();
+    }
+    
   protected:
     cExprNode *mLeftExpr;       // left expression
     cExprNode *mRightExpr;      // right expression
-    char mOperator;             // operator: '+', '-', '*', '/', '%'
+    char mOperator [2];             // operator: '+', '-', '*', '/', '%'
 };
 

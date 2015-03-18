@@ -10,6 +10,7 @@
 //*******************************************************
 
 #include <iostream>
+#include "codegen.h"
 #include <string>
 
 class cAstNode
@@ -24,6 +25,8 @@ class cAstNode
     virtual bool SemanticError() { return mSemanticError; }
   
     virtual int Computeoffsets(int base) { return base; }
+    
+    virtual void GenerateCode() {}
   protected:
     bool mSemanticError;        // true indicates this node has a semantic error
     int mBase;
