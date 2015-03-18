@@ -4,7 +4,7 @@
 //
 // Author: Philip Howard
 // Email:  phil.howard@oit.edu
-//
+// Edited-By:   Alexander Tappin
 // Date: 2/20/2015
 //
 //*******************************************************
@@ -123,29 +123,6 @@ class cFuncDeclNode : public cDeclNode
     }
     void GenerateCode()
     {
-        
-        /*StartFunctionOutput();
-        EmitString(mReturnType->Name() + '_' + std::to_string(mReturnType->GetSequence()) + "(");
-            
-        if (mParams != nullptr)
-            mParams->GenerateCode();
-            
-        EmitString(")\n{\n");
-                
-        if (mDecls != nullptr)
-            EmitString("Stack_Pointer += " + std::to_string(mSize) + ";\n");
-                
-        if (mStmts != nullptr)
-            mStmts->GenerateCode();
-            
-        EmitString("Stack_Pointer = Frame_Pointer;\n");
-        EmitString("Stack_Pointer -= 4;\n");
-        EmitString("Frame_Pointer = (*(int *)(&Memory[(Stack_Pointer)]));\n");
-        
-        EmitString("}\n");
-        EndFunctionOutput();*/
-        
-        
         EmitString("int ");
         EmitString(mId->Name());
         EmitString("( ");

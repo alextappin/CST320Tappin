@@ -4,7 +4,7 @@
 //
 // Author: Philip Howard
 // Email:  phil.howard@oit.edu
-//
+// Edited-By:   Alexander Tappin
 // Date: 2/20/2015
 //
 //*******************************************************
@@ -58,19 +58,6 @@ class cFuncCallNode : public cExprNode
     
     void GenerateCode()
     {
-        /*EmitString("(*(int *)(&Memory[(Stack_Pointer)])) = Frame_Pointer;\n");
-        EmitString("Stack_Pointer += 4;\n");
-            
-        if (mParams != nullptr)
-        {
-            mParams->GenerateCode();
-        }    
-            
-        EmitString("Frame_Pointer = Stack_Pointer - " + std::to_string(mParams->NumParams()) + ";\n");
-                
-        EmitString(mId->Name() + "_" + std::to_string(mId->GetSequence()) + "();\n");*/
-        
-        /*So did this*/
         EmitString(mId->Name());
         EmitString("();\n");
     }

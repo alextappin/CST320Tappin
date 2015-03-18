@@ -1,3 +1,5 @@
+// Edited-By:   Alexander Tappin
+
 #pragma once
 
 #include <string>
