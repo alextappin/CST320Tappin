@@ -1,3 +1,3 @@
 make clean
 make
-test/runc test17
+test/runc test18

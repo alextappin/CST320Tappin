@@ -95,20 +95,80 @@ class cFuncDeclNode : public cDeclNode
         return result;
     }
 
-    virtual int Computeoffsets(int base)
+    int Computeoffsets(int base)
     {
         int offset = 0;
         
         if (mParams != nullptr)
+        {
             offset = mParams->Computeoffsets(offset);
-        if (mDecls != nullptr)
-            offset = mDecls->Computeoffsets(offset);
-        if (mStmts != nullptr)
-            offset = mStmts->Computeoffsets(offset);
+        }
         
-        mSize = mDecls->Size();
+        if (mDecls != nullptr)
+        {
+            offset = mDecls->Computeoffsets(offset);
+        }
+        
+        if (mStmts != nullptr)
+        {
+            offset = mStmts->Computeoffsets(offset);
+        }
+        
+        if (mDecls != nullptr)
+        {
+            mSize = mDecls->Size();
+        }
+        
         return base;
     }
+    void GenerateCode()
+    {
+        
+        /*StartFunctionOutput();
+        EmitString(mReturnType->Name() + '_' + std::to_string(mReturnType->GetSequence()) + "(");
+            
+        if (mParams != nullptr)
+            mParams->GenerateCode();
+            
+        EmitString(")\n{\n");
+                
+        if (mDecls != nullptr)
+            EmitString("Stack_Pointer += " + std::to_string(mSize) + ";\n");
+                
+        if (mStmts != nullptr)
+            mStmts->GenerateCode();
+            
+        EmitString("Stack_Pointer = Frame_Pointer;\n");
+        EmitString("Stack_Pointer -= 4;\n");
+        EmitString("Frame_Pointer = (*(int *)(&Memory[(Stack_Pointer)]));\n");
+        
+        EmitString("}\n");
+        EndFunctionOutput();*/
+        
+        
+        EmitString("int ");
+        EmitString(mId->Name());
+        EmitString("( ");
+        
+        if(mParams != nullptr)
+        {
+            mParams->GenerateCode();
+        }
+        EmitString(" )\n{\n");
+        
+        if(mDecls != nullptr)
+        {
+            mDecls->GenerateCode();
+        }
+        
+        if(mStmts != nullptr)
+        {
+            mStmts->GenerateCode();
+        }
+        
+        EmitString("\n}\n");
+    }
+    
   protected:
     cSymbol *mReturnType;       // return type of function
     cParamsSpecNode *mParams;   // formal parameter list

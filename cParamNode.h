@@ -41,7 +41,9 @@ class cParamNode: public cAstNode
     }
 
     int NumParams()
-    { return mList->size(); }
+    { 
+        return mList->size(); 
+    }
 
     virtual std::string toString()
     {
@@ -52,15 +54,44 @@ class cParamNode: public cAstNode
         return result;
     }
     
+    int GetSize()
+    {
+        return mSize;
+    }
+    
     virtual int Computeoffsets(int base)
     {
+        int offset;
         for(auto &it: *mList)
-            it->Computeoffsets(base);
+            offset = it->Computeoffsets(base);
+        mSize = offset;
         
         return base;
     }
 
+    void GenerateCode()
+    {
+        list<cExprNode *>::iterator it = mList->begin();
+      
+        for(;it != mList->end(); it++)
+        {
+            if ((*it)->GetType()->IsFloat())
+            {   
+                EmitString("*(double*)(&Memory[Stack_Pointer]) = ");
+            }
+            else
+            {
+                EmitString("*(int*)(&Memory[Stack_Pointer]) = ");
+            }
+            
+            (*it)->GenerateCode();
+            EmitString(";\n");
+            EmitString("Stack_Pointer += 4;\n");
+        }
+    }
+    
   protected:
     list<cExprNode *> *mList;       // list of parameters
+    int mSize;
 };
 

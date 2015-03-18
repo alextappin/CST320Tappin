@@ -57,6 +57,14 @@ class cDeclsNode : public cAstNode
         return offset;
     }
 
+    virtual void GenerateCode()
+    {
+            list<cDeclNode*>::iterator it;
+            
+            for (it = mList->begin(); it != mList->end(); it++)
+                (*it)->GenerateCode();
+    }
+    
     int Size()
     {
         return mSize;

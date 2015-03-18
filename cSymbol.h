@@ -44,6 +44,11 @@ class cSymbol
 
             return result;
         }
+        
+        int GetSequence()
+        {
+            return sequence;
+        }
 
     protected:
         std::string name;           // name of the symbol

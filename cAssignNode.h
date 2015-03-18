@@ -52,7 +52,7 @@ class cAssignNode : public cStmtNode
         return base;
     }
     
-        void GenerateCode()
+    void GenerateCode()
     {
         if(mLval != nullptr)
         {

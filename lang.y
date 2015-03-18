@@ -181,8 +181,16 @@ stmt:       IF '(' expr ')' stmt ELSE stmt
         |   block               { $$ = $1; }
         |   RETURN expr ';'     { $$ = new cReturnNode($2); }
         |   error ';'           { $$ = NULL; }
-        //|   stmt: lval '=' func_call ';'
-                                //{ }
+        |   lval '=' func_call ';'
+                                { 
+                                    $$ = new cAssignNode((cVarRefNode*)$1, $3);
+                                    
+                                    if ($$->SemanticError())
+                                    {
+                                        semantic_error("failed value function assignment");
+                                        $$ = nullptr;
+                                    }
+                                }
 
 func_call:  IDENTIFIER '(' params ')' 
                                 { $$ = new cFuncCallNode($1, $3); }
